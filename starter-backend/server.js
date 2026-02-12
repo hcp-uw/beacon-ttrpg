@@ -1,6 +1,7 @@
 const express = require("express")
 const cors = require("cors")
 const { unknownEndpoint } = require('./middleware');
+const authenticateUser = require("./authMiddleWare");
 
 // create your express application
 const app = express();
@@ -10,6 +11,8 @@ app.use(express.json());
 
 // enable cors
 app.use(cors());
+
+
 
 // our 'database'. This is just a simple in-memory store for the images, and
 // will be lost when the server is restarted. In a real application, you would
@@ -25,7 +28,7 @@ app.get('/message/hello', (req, res) => {
     )
 })
 
-app.post('/image/upload', (req, res) => {
+app.post('/image/upload', authenticateUser, (req, res) => {
     console.log(req.body);
     const base64ImgData = req.body.image;
     images.push(base64ImgData);

@@ -3,6 +3,17 @@ import FeaturedImages from './components/FeaturedImages/FeaturedImages'
 import DrawingCanvas from './components/DrawingCanvas/DrawingCanvas'
 import { getMessage } from './services/message';
 import './App.css'
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from './firebaseClient';
+import { signInWithGoogle, logout } from './authService';
+
+onAuthStateChanged(auth, (user) => { 
+  if (user) {
+    console.log("User is signed in:", user.email);
+  } else {
+    console.log("Logged out.");
+  }
+})
 
 // The App component is the root component of the application.
 const App = () => {
@@ -39,6 +50,8 @@ const App = () => {
       <FeaturedImages/>
       <p className='message'>{message}</p>
       <DrawingCanvas />
+      <button onClick={signInWithGoogle}>Sign in</button>
+      <button onClick={logout}>Sign out</button>
     </div>
   )
 }
