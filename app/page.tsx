@@ -1,65 +1,101 @@
+"use client";
+import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-white text-white">
+      
+      {/* ===== Top Navigation Bar ===== */}
+      <header className="h-14 bg-gradient-to-r from-[#3b3f7c] via-[#3a3f69] to-[#3a3a3a] flex items-center justify-between px-8">
+        <div className="text-2xl tracking-wide font-heading">
+          SOURCE
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <nav className="flex items-center gap-12 text-xl tracking-[0.4em] uppercase font-heading">
+          <Link
+            href="/"
+            className="opacity-90 hover:opacity-100 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            Beacons
+          </Link>
+
+          <Link
+            href="/compendium"
+            className="opacity-90 hover:opacity-100 transition"
           >
-            Documentation
-          </a>
+            Compendium
+          </Link>
+
+          <Link
+            href="/"
+            className="opacity-90 hover:opacity-100 transition"
+          >
+            Menu
+          </Link>
+        </nav>
+      </header>
+
+      {/* ===== Welcome Banner ===== */}
+      <section className="mx-8 mt-6">
+        <div className="flex items-center gap-3 bg-gradient-to-r from-[#3b3f7c] via-[#3a3f69] to-[#3a3a3a] px-5 py-3 rounded shadow">
+          <span className="text-lg">👤</span>
+          <span className="text-sm">Welcome message?</span>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* ===== Main Content ===== */}
+      <section className="grid grid-cols-[560px_1fr] gap-16 mt-16 max-w-[1400px] mx-auto px-8 items-start">
+        {/* Left: buttons */}
+        <div className="flex flex-col gap-10 items-center mt-16 ml-10">
+          <Link
+            href="/beacons"
+            className="
+              w-[520px]
+              flex items-center gap-5
+              bg-gradient-to-r from-[#353a7a] via-[#3f4370] to-[#3b3b3b]
+              px-14 py-8
+              rounded-2xl
+              shadow-lg
+              text-4xl font-serif
+              text-left
+              hover:opacity-95 active:scale-[0.99]
+              transition
+            "
+          >
+            <span className="text-4xl">🗺</span>
+            <span>Beacon Roster</span>
+          </Link>
+
+          <Link
+            href="/compendium"
+            className="
+              w-[520px]
+              flex items-center gap-5
+              bg-gradient-to-r from-[#353a7a] via-[#3f4370] to-[#3b3b3b]
+              px-14 py-8
+              rounded-2xl
+              shadow-lg
+              text-4xl font-serif
+              text-left
+              hover:opacity-95 active:scale-[0.99]
+              transition
+            "
+          >
+            <span className="text-4xl">🧭</span>
+            <span>Compendium</span>
+          </Link>
+        </div>
+
+        {/* Right: image */}
+        <div className="flex justify-end">
+          <img
+            src="/beacon-visual.png"
+            alt="Beacon artwork"
+            className="w-[480px] h-auto rounded-xl shadow-lg"
+          />
+        </div>
+      </section>
+    </main>
   );
 }
