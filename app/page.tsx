@@ -14,7 +14,7 @@ export default function Home() {
 
         <nav className="flex items-center gap-12 text-xl tracking-[0.4em] uppercase font-heading">
           <Link
-            href="/"
+            href="/beacons"
             className="opacity-90 hover:opacity-100 transition"
           >
             Beacons
@@ -47,7 +47,7 @@ export default function Home() {
       {/* ===== Main Content ===== */}
       <section className="grid grid-cols-[560px_1fr] gap-16 mt-16 max-w-[1400px] mx-auto px-8 items-start">
         {/* Left: buttons */}
-        <div className="flex flex-col gap-10 items-center mt-16 ml-10">
+        <div className="flex flex-col gap-10 items-start mt-32 ml-28">
           <Link
             href="/beacons"
             className="
