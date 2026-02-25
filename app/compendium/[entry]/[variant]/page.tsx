@@ -1,9 +1,41 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { use, useMemo, useState, useEffect } from "react";
 import Link from "next/link";
+import Markdown from 'react-markdown';
+import { doc, getDoc } from "firebase/firestore";
+import {db} from '@/firebase-config.mjs';
+import type { CompendiumEntry } from "@/types/compendium-entry";
+import Infobox from "@/components/Infobox";
 
-export default function CompendiumPage() {
+export default function CompendiumPage({ params }: { params: Promise<{ entry: string; variant: string }> }) {
+  const { entry, variant } = use(params);
+
+  useEffect(() => {
+    const load = async () => {
+      // Ensure entry and variant are available
+      if (!entry || !variant) return;
+
+      const docSnap = await getDoc(doc(db, "compendium_entries", entry, "variants", variant));
+
+      if (docSnap.exists()) {
+        setContent(docSnap.data());
+        console.log("Document data:", docSnap.data());
+      } else {
+        console.log("No such document!");
+      }
+    };
+
+    load();
+  }, [entry, variant]);
+
+  // 默认选中 Job（跟你现在一样）
+  // Translated: Job is current default (temporary)
+  // I am working on slugs, however: it should be possible to grab any document. However, Job is
+  // the only one that has content right now, so it is the default for testing purposes.
+  const [activeLabel, setActiveLabel] = useState<string>("Job");
+  const [content, setContent] = useState<CompendiumEntry | null>(null);
+
   const navItems = useMemo(
     () => [
       { label: "Beacon", icon: "▸" },
@@ -20,9 +52,6 @@ export default function CompendiumPage() {
     ],
     []
   );
-
-  // 默认选中 Job（跟你现在一样）
-  const [activeLabel, setActiveLabel] = useState<string>("Job");
 
   return (
     <main className="min-h-screen bg-white text-[#0f1020]">
@@ -57,8 +86,8 @@ export default function CompendiumPage() {
         {/* ===== Left Sidebar ===== */}
         <aside className="bg-[#efeff2] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.18)] border border-[#d7d7dd] overflow-hidden">
           <div className="py-6 px-6">
-            <div className="text-3xl font-serif font-semibold text-[#41AFF3] -mt-2">
-              Choose One
+            <div className="text-3xl font-serif font-semibold text-[#2c2f5e] -mt-2">
+              Navigation
             </div>
 
             <nav className="flex flex-col gap-3">
@@ -103,29 +132,20 @@ export default function CompendiumPage() {
         {/* ===== Right Content ===== */}
         <div className="flex flex-col gap-8">
           {/* Example callout card */}
-          <div className="bg-gradient-to-r from-[#353a7a] via-[#3f4370] to-[#3b3b3b] text-white rounded-md shadow-lg border border-[#d7d7dd] px-6 py-5 flex items-center gap-4">
-            <div className="flex-none w-10 h-10 rounded-full bg-white text-[#2c2f5e] flex items-center justify-center font-bold">
-              !
-            </div>
-            <p className="leading-relaxed font-serif text-lg">
-              Example: Shawn picks the <span className="underline">Equinox</span>{" "}
-              class for Dhalia, gaining the Equinox job and unlocking the rank 1{" "}
-              <span className="underline">Exobomb</span> and{" "}
-              <span className="underline">Scar</span> spells. She likes that the
-              class focuses on long-distance spell attacks, as well as the
-              description mentioning sun aether, which connects to her background
-              skill “Disciple of the Sun”.
-            </p>
-          </div>
-
+          {(content?.infoboxes ?? [""]).map((text, index) => (
+            <Infobox key={index} content={text} />
+          ))}
+          
           {/* Main content card */}
           <div className="bg-[#f3f3f5] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.18)] border border-[#d7d7dd] p-8">
             <h1 className="text-5xl font-serif text-[#2c2f5e] mb-4 underline underline-offset-8">
-              {activeLabel}
+              {content?.title || ""}
             </h1>
 
             <div className="font-serif text-xl text-[#2c2f5e] leading-relaxed">
-              text
+              <Markdown>
+                {content?.body || ""}
+              </Markdown>
             </div>
           </div>
         </div>

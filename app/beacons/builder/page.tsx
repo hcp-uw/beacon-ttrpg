@@ -3,6 +3,19 @@
 import Link from "next/link";
 
 export default function BuilderPage() {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+
+    // Read the form data
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Work with data as JSON object
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
+  }
+
   return (
     <main className="min-h-screen bg-[#f3f3f5] text-[#2c2f5e]">
       {/* ============================= */}
@@ -48,6 +61,7 @@ export default function BuilderPage() {
       {/* Main Builder Card */}
       {/* ============================= */}
       <section className="px-10 pt-6">
+        <form method="post" onSubmit={handleSubmit}>
         <div className="bg-[#efeff2] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.2)] border border-[#d7d7dd] p-8 grid grid-cols-[220px_1fr_200px] gap-6 items-start">
 
           {/* ================================= */}
@@ -72,7 +86,7 @@ export default function BuilderPage() {
               <label className="text-sm font-serif uppercase tracking-wide">
                 * Full Name - or Sobriquet
               </label>
-              <input className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+              <input name="beaconName" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
             </div>
 
             {/* Title */}
@@ -80,7 +94,7 @@ export default function BuilderPage() {
               <label className="text-sm font-serif uppercase tracking-wide">
                 Title
               </label>
-              <input className="w-[70%] border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+              <input name="beaconTitle" className="w-[70%] border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
             </div>
 
             {/* Description + Appearance */}
@@ -89,14 +103,14 @@ export default function BuilderPage() {
                 <label className="text-sm font-serif uppercase tracking-wide">
                   Description
                 </label>
-                <input className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+                <input name="beaconDescription" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
               </div>
 
               <div>
                 <label className="text-sm font-serif uppercase tracking-wide">
                   Appearance
                 </label>
-                <input className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+                <input name="beaconAppearance" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
               </div>
             </div>
           </div>
@@ -108,9 +122,19 @@ export default function BuilderPage() {
             <label className="text-sm font-serif uppercase tracking-wide">
               Pronouns
             </label>
-            <input className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+            <input name="beaconPronouns" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+          </div>
+
+          {/* ================================= */}
+          {/* Submit Button */}
+          {/* ================================= */}
+          <div className="col-span-3 flex justify-end">
+            <button type="submit" className="bg-white text-[#23244a] px-6 py-2 rounded-sm text-sm font-serif uppercase hover:ring-2 hover:ring-[#292F5E] hover:ring-inset transition">
+              Save & Continue
+            </button>
           </div>
         </div>
+        </form>
       </section>
     </main>
   );
