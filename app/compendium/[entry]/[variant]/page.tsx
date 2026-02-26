@@ -7,6 +7,8 @@ import { doc, getDoc } from "firebase/firestore";
 import {db} from '@/firebase-config.mjs';
 import type { CompendiumEntry } from "@/types/compendium-entry";
 import Infobox from "@/components/Infobox";
+import Navbar from "@/components/Navbar";
+import Titlebar from "@/components/Titlebar";
 
 export default function CompendiumPage({ params }: { params: Promise<{ entry: string; variant: string }> }) {
   const { entry, variant } = use(params);
@@ -55,31 +57,20 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
 
   return (
     <main className="min-h-screen bg-white text-[#0f1020]">
-      {/* ===== Top Nav (SOURCE + MENU) ===== */}
-      <header className="h-16 bg-gradient-to-r from-[#3b3f7c] via-[#3a3f69] to-[#3a3a3a] flex items-center justify-between px-10 text-white shadow-[0_2px_0_rgba(255,255,255,0.35)]">
-        <Link
-          href="/"
-          className="text-3xl font-heading tracking-wide hover:opacity-80 transition"
-        >
-          SOURCE
-        </Link>
+      {/* ===== Top Navigation Bar ===== */}
+      <Navbar></Navbar>
 
-        <Link
-          href="/"
-          className="text-xl font-heading tracking-[0.35em] uppercase hover:opacity-80 transition"
-        >
-          MENU
-        </Link>
-      </header>
-
-      {/* ===== Big Compendium Title Bar ===== */}
-      <section className="px-10 pt-8">
-        <div className="bg-gradient-to-r from-[#353a7a] via-[#3f4370] to-[#3b3b3b] h-14 rounded-sm shadow-lg border border-[#cfcfd6] flex items-center justify-center">
-          <div className="text-white font-heading tracking-[0.45em] text-2xl uppercase">
-            COMPENDIUM
-          </div>
+      {/* ===== Title Bar ===== */}
+      <Titlebar>
+        <div className="text-white font-heading tracking-[0.45em] text-2xl uppercase">
+          COMPENDIUM
         </div>
-      </section>
+        <select name="version" className="absolute right-12 bg-transparent text-white text-center font-heading tracking-[0.2em] uppercase hover:opacity-80 transition">
+          <option value="newest" className="font-serif text-[#2c2f5e]">newest</option>
+          <option value="0" className="font-serif text-[#2c2f5e]">prior</option>
+          <option value="1" className="font-serif text-[#2c2f5e]">next-prior</option>
+        </select>
+      </Titlebar>
 
       {/* ===== Main Layout ===== */}
       <section className="max-w-[1400px] mx-auto px-10 pt-8 pb-16 grid grid-cols-[320px_1fr] gap-10 items-start">
@@ -130,24 +121,24 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
         </aside>
 
         {/* ===== Right Content ===== */}
-        <div className="flex flex-col gap-8">
-          {/* Example callout card */}
-          {(content?.infoboxes ?? [""]).map((text, index) => (
-            <Infobox key={index} content={text} />
-          ))}
-          
+        <div className="flex flex-col gap-8">       
           {/* Main content card */}
-          <div className="bg-[#f3f3f5] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.18)] border border-[#d7d7dd] p-8">
-            <h1 className="text-5xl font-serif text-[#2c2f5e] mb-4 underline underline-offset-8">
+          <div className="bg-[#f3f3f5] shadow-xl border border-[#d7d7dd] p-8">
+            <h1 className="text-3xl font-serif text-[#2c2f5e] mb-4">
               {content?.title || ""}
             </h1>
 
-            <div className="font-serif text-xl text-[#2c2f5e] leading-relaxed">
+            <div className="prose-md font-serif prose-a:text-[#41AFF3] prose-a:underline prose-a:underline-offset-4 leading-relaxed prose-h1:text-xl prose-h1:leading-10 prose-h2:text-lg prose-h2:leading-8">
               <Markdown>
                 {content?.body || ""}
               </Markdown>
             </div>
           </div>
+
+          {/* Infoboxes */}
+          {(content?.infoboxes ?? [""]).map((text, index) => (
+            <Infobox key={index} content={text} />
+          ))}
         </div>
       </section>
     </main>

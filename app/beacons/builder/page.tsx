@@ -1,6 +1,7 @@
 "use client";
 
-import Link from "next/link";
+import Navbar from "@/components/Navbar";
+import Titlebar from "@/components/Titlebar";
 
 export default function BuilderPage() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -18,44 +19,26 @@ export default function BuilderPage() {
 
   return (
     <main className="min-h-screen bg-[#f3f3f5] text-[#2c2f5e]">
-      {/* ============================= */}
-      {/* Top Navigation Bar */}
-      {/* ============================= */}
-      <header className="h-14 bg-gradient-to-r from-[#3b3f7c] via-[#3a3f69] to-[#3a3a3a] flex items-center justify-between px-8 text-white">
-        {/* Left logo */}
-        <Link href="/" className="text-2xl tracking-wide font-heading">
-          SOURCE
-        </Link>
+      {/* ===== Top Navigation Bar ===== */}
+      <Navbar></Navbar>
 
-        {/* Right nav */}
-        <nav className="flex items-center gap-12 text-xl tracking-[0.4em] uppercase font-heading">
-          <Link href="/beacons">Beacons</Link>
-          <Link href="/beacons/builder">Builder</Link>
-          <Link href="/">Menu</Link>
-        </nav>
-      </header>
-
-      {/* ============================= */}
-      {/* Step Header Bar */}
-      {/* ============================= */}
-      <section className="px-10 pt-6">
-        <div className="bg-gradient-to-r from-[#353a7a] via-[#3f4370] to-[#3b3b3b] text-white px-6 py-3 shadow-lg flex items-center gap-6">
-          {/* Step indicator */}
-          <div className="flex items-center gap-4 font-heading tracking-[0.25em] uppercase">
-            <span className="text-2xl">1</span>
-            <span>Profile</span>
-          </div>
-
-          {/* Steps placeholder */}
-          <div className="ml-auto flex gap-6 opacity-80">
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>5</span>
-            <span className="font-bold">End</span>
-          </div>
+      {/* ===== Title Bar ===== */}
+      <Titlebar>  
+        {/* Step indicator */}
+        <div className="flex items-center gap-4 font-heading tracking-[0.25em] uppercase">
+          <span className="text-2xl">1</span>
+          <span>Profile</span>
         </div>
-      </section>
+
+        {/* Steps placeholder */}
+        <div className="ml-auto flex gap-6 opacity-80">
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span className="font-bold">End</span>
+        </div>
+      </Titlebar>
 
       {/* ============================= */}
       {/* Main Builder Card */}

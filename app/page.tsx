@@ -1,41 +1,15 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import Navbar from "@/components/Navbar";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-white">
       
       {/* ===== Top Navigation Bar ===== */}
-      <header className="h-14 bg-gradient-to-r from-[#3b3f7c] via-[#3a3f69] to-[#3a3a3a] flex items-center justify-between px-8">
-        <div className="text-2xl tracking-wide font-heading">
-          SOURCE
-        </div>
-
-        <nav className="flex items-center gap-12 text-xl tracking-[0.4em] uppercase font-heading">
-          <Link
-            href="/beacons"
-            className="opacity-90 hover:opacity-100 transition"
-          >
-            Beacons
-          </Link>
-
-          <Link
-            href="/compendium"
-            className="opacity-90 hover:opacity-100 transition"
-          >
-            Compendium
-          </Link>
-
-          <Link
-            href="/"
-            className="opacity-90 hover:opacity-100 transition"
-          >
-            Menu
-          </Link>
-        </nav>
-      </header>
-
+      <Navbar></Navbar>
+      
       {/* ===== Welcome Banner ===== */}
       <section className="mx-8 mt-6">
         <div className="flex items-center gap-3 bg-gradient-to-r from-[#3b3f7c] via-[#3a3f69] to-[#3a3a3a] px-5 py-3 rounded shadow">
