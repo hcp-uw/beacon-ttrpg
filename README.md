@@ -1,58 +1,72 @@
-# Node.js (React, Express) Project Starter ✅
+## Project Structure
 
-A simple template repository with a React frontend and Express backend for quickly starting new full-stack projects.
+##### Home
+app/
+page.tsx            
 
-## Prerequisites ‼️
+##### Beacon roster
+beacons/
+page.tsx          
 
-To use this template, you need to have the following installed on your machine:
+##### Character builder
+builder/
+page.tsx        
 
-- Node.js 
-- npm 
+##### Compendium
+compendium/
+page.tsx          
 
-## Getting Started ▶️
+---
 
-These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
+## Features
 
-1. If you are a part of HCP, request a new repository using this template.
+### Home
+Main navigation hub linking to Beacons and Compendium.
 
-2. Clone your new repository:
+### Beacons
+Roster-style character grid.
 
-```bash
-git clone <your-repo-url>
-```
+---
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-3. Install the required dependencies for both the frontend and backend:
+## Getting Started
 
-```bash
-cd <your-repo-name>
-cd starter-frontend
-npm i
-cd ../starter-backend
-npm i
-```
-
-## Development 💻
-
-To start the development environment, follow these steps:
-
-1. Start your server (from the root of the project):
+First, run the development server:
 
 ```bash
-cd starter-backend
-npm start
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-2. In a new terminal window (starting from the root of your project):
-```bash
-cd starter-frontend
-npm start
-```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Authors 📝
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-[Elijah Melton](https://github.com/elimelt)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Contributing 🤝
+## Learn More
 
-If you have any feedback feel free to submit an issue/pull request! Contributions are more than welcome.
+To learn more about Next.js, take a look at the following resources:
 
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+### Builder
+Multi-step character creation UI.
+
+### Compendium
+Structured content viewer with sidebar navigation.
