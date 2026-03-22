@@ -1,7 +1,5 @@
 "use client";
 
-// OBSOLETE: This page is no longer used, but I am keeping it around for reference as I build out the new version. 
-// I plan not to use [variant] as a separate URL parameter, but rather to pull variant data from the same document as the entry.
 import { use, useMemo, useState, useEffect } from "react";
 import Markdown from "@/components/Markdown";
 import { doc, getDoc } from "firebase/firestore";
@@ -12,14 +10,14 @@ import Navbar from "@/components/Navbar";
 import Titlebar from "@/components/Titlebar";
 
 export default function CompendiumPage({ params }: { params: Promise<{ entry: string; variant: string }> }) {
-  const { entry, variant } = use(params);
+  const { entry} = use(params);
 
   useEffect(() => {
     const load = async () => {
       // Ensure entry and variant are available
-      if (!entry || !variant) return;
+      if (!entry) return;
 
-      const docSnap = await getDoc(doc(db, "compendium_entries", entry, "variants", variant));
+      const docSnap = await getDoc(doc(db, "compendium_entries", entry));
 
       if (docSnap.exists()) {
         setContent(docSnap.data());
@@ -30,7 +28,7 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
     };
 
     load();
-  }, [entry, variant]);
+  }, [entry]);
 
   // 默认选中 Job（跟你现在一样）
   // Translated: Job is current default (temporary)
@@ -126,14 +124,14 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
           {/* Main content card */}
           <div className="bg-[#f3f3f5] shadow-xl border border-[#d7d7dd] p-8">
             <h1 className="text-3xl font-serif text-[#2c2f5e] mb-4">
-              {content?.title || ""}
+              {content?.title || ""} {/* maybe unneeded */}
             </h1>
 
-            <div className="prose font-serif leading-relaxed">
-              <Markdown content={"[[actions/channel: 3 Channel]]"} />
+            <div className="font-serif leading-relaxed max-w-none">
+              {/* <Markdown content={"[[actions/channel: 3 Channel]]"} />
               <Markdown content={"[[items/box: Box]]"} />
               <Markdown content={"[[conditions/hidden: Hidden]]"} />
-              <Markdown content={"[[spells/fimprovised_spell_attack: Improvised Spell Attack]]"} />
+              <Markdown content={"[[spells/improvised_spell_attack: Improvised Spell Attack]]"} /> */}
               <Markdown content={content?.body || ""}/>
             </div>
           </div>

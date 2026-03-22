@@ -1,5 +1,5 @@
 {
-  "name": "beacon-web",
+  "name": "beacon-ttrpg",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,10 +10,16 @@
   },
   "dependencies": {
     "firebase": "^12.9.0",
+    "firebase-admin": "^13.7.0",
     "next": "16.1.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "remark-directive": "^4.0.0",
+    "remark-gfm": "^4.0.1",
+    "remark-wiki-link": "^2.0.1",
+    "tailwindcss-opentype": "^1.2.0",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -21,9 +27,11 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.27",
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
-    "tailwindcss": "^4",
+    "postcss": "^8.5.8",
+    "tailwindcss": "^4.2.1",
     "typescript": "^5"
   }
 }

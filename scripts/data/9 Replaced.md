@@ -1,0 +1,381 @@
+# 9: BASIC EQUIPMENT AND TECHNIQUES
+
+Beacons have access to an array of basic equipment and techniques. These abilities are always available to beacons, either because they're easy to find, learn, or craft, or because they're cheap.
+
+Whenever you prepare for a quest, you can always choose equipment and techniques from those listed in this section. Additionally, if an ability isn't **Unique**, you can equip multiple copies, as long as you have the slots or Memory to equip it.
+
+## BASIC MELEE WEAPONS
+
+| NAME          | ACTION                    | SIZE/TYPE     | TAGS               | RANGE   | DAMAGE               |
+| ------------- | ------------------------- | ------------- | ------------------ | ------- | -------------------- |
+| Aetherbreaker | [[actions/fight:5 Fight]] | Main Club     | Inaccurate         | Reach 1 | :adx[2d6+1] Force    |
+| Bloodpike     | [[actions/fight:5 Fight]] | Heavy Longarm | –                  | Reach 2 | :adx[2d6+1] Lunar    |
+| Hammer        | [[actions/fight:5 Fight]] | Light Club    | Thrown 5           | Reach 1 | :adx[1d3+1] Physical |
+| Maul          | [[actions/fight:5 Fight]] | Heavy Club    | Inaccurate, Push 1 | Reach 1 | :adx[3d6] Physical   |
+| Moonknife     | [[actions/fight:5 Fight]] | Light Blade   | Accurate, Thrown 3 | Reach 1 | :adx[1d3] Lunar      |
+| Photon Axe    | [[actions/fight:5 Fight]] | Heavy Blade   | Reliable 4         | Reach 1 | :adx[1d6+7] Astral   |
+| Rapier        | [[actions/fight:5 Fight]] | Light Blade   | Piercing           | Reach 1 | 2 Physical           |
+| Runespear     | [[actions/fight:5 Fight]] | Main Longarm  | Thrown 3           | Reach 2 | :adx[1d6+1] Force    |
+| Sword         | [[actions/fight:5 Fight]] | Main Blade    | Reliable 2         | Reach 1 | :adx[1d6+1] Physical |
+| Whip          | [[actions/fight:5 Fight]] | Light Longarm | –                  | Reach 3 | :adx[1d3] Physical   |
+
+## BASIC RANGED WEAPONS
+
+| NAME           | ACTION                      | SIZE/TYPE      | TAGS                     | RANGE             | DAMAGE               |
+| -------------- | --------------------------- | -------------- | ------------------------ | ----------------- | -------------------- |
+| Crossbow       | [[actions/volley:3 Volley]] | Heavy Bow      | Piercing, Reloading      | Range 10          | :adx[2d6+3] Physical |
+| Crystal Staff  | [[actions/volley:3 Volley]] | Heavy Artifact | Aetheric, Mana 2         | Range 10, Blast 2 | :adx[2d6] Lunar      |
+| Forbidden Tome | [[actions/volley:3 Volley]] | Main Artifact  | Aetheric, Arcing, Mana 1 | Range 15, Blast 1 | :adx[1d3+1] Lunar    |
+
+| NAME            | ACTION                                  | SIZE/TYPE      | TAGS                        | RANGE            | DAMAGE             |
+| --------------- | --------------------------------------- | -------------- | --------------------------- | ---------------- | ------------------ |
+| Lunar Cannon    | [[actions/full attack:7 Full Attack]]   | Heavy Magitech | Reliable 4, Reloading, Slow | Line 15          | :adx[3d6+3] Lunar  |
+| Shardgun Pistol | [[actions/volley:3 Volley]]             | Light Magitech | Reliable 1                  | Range 5, Reach 3 | :adx[1d3] Force    |
+| Shardgun Rifle  | [[actions/volley:3 Volley]]             | Main Magitech  | Reliable 2                  | Range 10         | :adx[1d6+1] Force  |
+| Shardshredder   | [[actions/volley:3 Volley]]             | Main Magitech  | –                           | Range 5, Reach 3 | :adx[2d3] Force    |
+| Shortbow        | [[actions/volley:3 Volley]]             | Main Bow       | Arcing                      | Range 10         | :adx[1d6] Physical |
+| Starwand        | [[actions/volley:3 Volley]]             | Light Artifact | Accurate, Aetheric          | Range 5          | :adx[1d3] Astral   |
+| Stormbow        | [[actions/volley:3 Volley]]             | Heavy Bow      | Arcing, Push 1              | Range 15         | :adx[2d6] Astral   |
+
+## BASIC SUPPORT ITEMS
+
+:::box
+::boxTitle[**Aquatic Gear**]
+::boxSubtitle[Support Item · Light]
+
+You move normally in liquid-based difficult terrain, and have an **Aquatic Adaptation**.
+:::
+
+### **Arcana Crystal**
+
+Support Item · Light · Consumable 3
+
+When you use a spell, you can expend a charge for one of the following effects:
+
+- Ø **Potent:** If it forces saves, it gains +2 Save Target.
+- Ø **Seeking:** If it's a spell attack, you gain **+1** for the attack.
+
+### **Armor, Heavy**
+
+Support Item · Heavy · Armor
+
++3 Armor, –1 Speed, and –1 Dodge.
+
+### **Armor, Light**
+
+Support Item · Light · Armor
+
++1 Armor.
+
+#### **Armor, Medium**
+
+Support Item · Main · Armor
+
++2 Armor and –1 Dodge.
+
+### **Battering Ram**
+
+Support Item · Heavy
+
+You receive the following benefits:
+
+- Ø Whenever you **push** or **slide** another character, you can move them **+2 spaces**.
+- Ø You gain +2 Save Target.
+
+**Minor Action:** You **push** an adjacent character 1 space or deal 10 Piercing Physical to an adjacent piece of cover.
+
+### **Caltrops**
+
+Minor Action · Support Item · Light · Consumable 3, Thrown 5, Trap
+
+You can expend a charge for one of the following effects:
+
+- Ø **Nails (Thrown 5): On Hit:** The target takes 1 Piercing Physical for every space they move during their next turn.
+- Ø **Spikes (Trap):** When triggered, this **Trap** creates a Blast 1 zone centered on itself that lasts until the end of this phase in the next round. Characters that start their turn in the zone or enter it for the first time in a turn take :adx[1d6] Piercing Physical .
+
+### **Climbing Gear**
+
+Support Item · Light
+
+**Climbing** costs half as much movement as normal. When you **climb**, you can bring a willing adjacent ally with you as long as there is enough space for both of you to stand in separate spaces.
+
+### **Companion**
+
+Minor Action · Support Item · Main · Summon
+Range = Scope
+
+**Companion**(Size 1/2, HP 5, Dodge/A-Def 10, Speed 0)
+
+You summon or dismiss your **companion**, which can be a beast, friend, or anything else willing to aid you in combat. **1/turn** when you attack a character adjacent to your companion, the companion deals 3 Physical to them.
+
+As a **reaction** after a character adjacent to your companion moves, your companion can **shift 5**. They must end this movement as close to the triggering character as possible.
+
+You can only have one companion in play at a time and they retain their current HP when dismissed. They regain all HP during **Rests**. If they are defeated, this item is destroyed.
+
+### **Explosive Materials**
+
+Minor Action · Support Item · Main · Consumable 3, Thrown 5, Trap
+
+When you equip this item, choose either Physical, Astral, Lunar, or Force. This determines the damage it deals. You can expend a charge for one of the following effects:
+
+- Ø **Explosive Bomb (Thrown 5):** Center a Blast 1 AOE on the target space. All characters in the AOE must make an Agility save. **Failure:** They take :adx[1d6] damage . **Success:** They take half damage.
+- Ø **Explosive Trap (Trap):** When triggered, this **Trap** creates a Burst 1 AOE. All characters in the area take 6 damage .
+
+### **Healing Potion**
+
+Minor Action · Support Item · Light · Consumable 2
+
+You can expend a charge and a Recovery to regain all HP.
+
+### **Lore Book**
+
+Minor Action · Support Item · Light Mana 1
+
+Choose a character in the scene. You can [[actions/search:3 Search]] them, but only to learn their ability scores, attributes, and abilities.
+
+### Mana Potion
+
+Minor Action · Support Item · Light · Consumable 2
+
+You can expend a charge to regain all MP.
+
+### **Poison**
+
+Support Item · Light · Consumable 2
+
+You can expend a charge when you hit with a weapon. The target must make a Bulk save. **Failure:** They take 2 Stress are Dazed until the end of their next turn, and become Marked.
+
+### **Resistance Enchantment**
+
+Support Item · Main · Enchantment
+
+You may use one of the following **Enchantments** at a time:
+
+- Ø **Any Armor:** While this **Armor** is equipped, you gain **resistance to Physical, Astral, Lunar, or Force**, chosen when you apply this **Enchantment**.
+- Ø **Any Weapon, Skill Attack, or Spell Attack:** This weapon or technique ignores one type of **resistance** – Physical, Astral, Lunar, or Force – chosen when you apply this **Enchantment**.
+
+### **Resistance Potion**
+
+Minor Action · Support Item · Light · Consumable 2
+
+You can expend a charge to gain **resistance to Physical, Astral, Lunar, and Force** until the end of your next turn.
+
+### **Shield**
+
+Support Item · Light
+
+You gain the Shield Block reaction. If you meet the trigger condition of Shield Block while using Interpose, you can automatically use its effect as part of that Interpose reaction.
+
+**Shield Block** [[actions/reaction:Reaction (1/round)]]
+
+**Trigger:** You would take Physical, Astral, Lunar, or Force.
+
+**Effect:** You take 2 Stress and gain **resistance to that damage**.
+
+### **Shield, Tower**
+
+Support Item · Main
+
+Allies gain the benefits of cover from you as if you were a piece of **hard cover**.
+
+You gain the Shield Block reaction. If you meet the trigger condition of Shield Block while using Interpose, you can automatically use its effect as part of that Interpose reaction.
+
+**Shield Block** [[actions/reaction:Reaction (1/round)]]
+
+**Trigger:** You would take Physical, Astral, Lunar, or Force.
+
+**Effect:** You take 2 Stress and gain **resistance to that damage**.
+
+**Smoke Charges** Minor Action · Support Item · Light · Consumable 3, Thrown 5, Trap
+
+You can expend a charge for one of the following effects:
+
+- Ø **Smoke Bomb (Thrown 5):** Center a Blast 2 zone on the target space that lasts until the end of your next turn. Characters fully within the zone gain **soft cover**.
+- Ø **Smokestick (Trap):** When triggered, this **Trap** creates a Burst 3 zone that lasts until the end of this phase in the next round. Characters fully within the zone gain **soft cover**.
+
+### **Stoneskin Potion**
+
+Minor Action · Support Item · Main · Consumable 3
+
+You can expend a charge to gain :adx[1d3+2] Focus.
+
+### **Sunrod**
+
+Support Item · Light · Consumable 3, Thrown 5
+
+You ignore penalties from **low visibility** while this item is equipped, even if it has no charges.
+
+**Minor Action:** You expend a charge for the following effect:
+
+Ø **Flash Bomb (Thrown 5):** All characters in a Blast 1 AOE centered on the target space must make a Bulk save. **Failure:** They are Blinded until the end of their next turn.
+
+### **Supply Convoy**
+
+Support Item · Heavy · Limited 4
+
+You receive –1 Speed while this item has charges remaining.
+
+**Minor Action (You or Adjacent Ally):** You expend a charge to do one of the following:
+
+- Ø Regain all MP.
+- Ø Regain all HP.
+- Ø Clear all **Stress**.
+- Ø Repair one destroyed piece of equipment or technique.
+
+#### **Thieves' Tools**
+
+Support Item · Light
+
+You receive the following benefits:
+
+- Ø You can automatically open locks as a **free action**.
+- Ø You can attempt to disable Hidden **Traps**.
+- Ø You gain **+1** on checks to disarm **Traps** and saves triggered by **Traps**.
+
+### **Whetstone**
+
+Support Item · Light · Consumable 2
+
+When you hit with a weapon, you can expend a charge to deal its maximum damage. Bonus damage and other effects are rolled normally.
+
+### **Wire Charges**
+
+Minor Action · Support Item · Light · Consumable 3, Thrown 5, Trap
+
+You can expend a charge for one of the following effects:
+
+- Ø **Wire Knot (Thrown 5):** Target a character within Range. On a hit, they must make an Agility save. **Failure:** They are Immobilized until the end of their next turn.
+- Ø **Wire Trap (Trap):** When triggered, all characters in a Burst 1 AOE must make an Agility save. **Failure:** They are Immobilized until the end of their next turn.
+
+## BASIC TECHNIQUES
+
+### **Adaptive Caster**
+
+Skill · 2 Memory
+
+When you Release a channeled ability, you can take 2 Stress to release a different one than the one you were channeling. You must pay the costs of both abilities.
+
+### **Arcane Bolt**
+
+[[actions/volley:3 Volley]]
+Ranged Spell Attack · 1 Memory · Accurate, Aetheric, Indirect
+Range = Scope · :adx[1d3] Force
+
+### **Arcane Explosion**
+
+[[actions/channel:2 Channel]]
+Ranged Spell Attack · 2 Memory · Auto-Hit
+Range = Scope, Blast 1 · 5 Force
+
+**On Release:** You can spend 1 MP to increase the damage to :adx[1d6+5] Force.
+
+### **Block**
+
+[[actions/reaction:Reaction (1/round)]]
+Skill · 1 Memory
+
+**Trigger:** You are hit by an attack.
+
+**Effect:** You gain +1 Dodge against the attack and can spend any amount of Focus, gaining an additional +1 Dodge for each. If this raises your Dodge above the result of the attack roll, it misses.
+
+### **Bolster Aether**
+
+[[actions/reaction:Reaction (1/round)]]
+Skill · 1 Memory
+
+**Trigger:** You are hit by an attack.
+
+**Effect:** You gain +1 A-Def against the attack and can spend any amount of Focus, gaining an additional +1 A-Def for each. If this raises your A-Def above the result of the attack roll, it misses.
+
+### **Endurance**
+
+Skill · 1 Memory · Unique
+
++2 maximum HP.
+
+### **Glancing Blow**
+
+Skill · 1 Memory · Focus X
+
+**1/turn** when you would take Physical, Force, Astral, or Lunar after Armor and **resistances**, you can reduce the amount by –1 for every point of Focus you spend. You can't use this ability if you are unable to take **reactions**.
+
+### Hinder Spell
+
+[[actions/volley:3 Volley]]
+Ranged Spell Attack · 1 Memory · Aetheric, Indirect
+Range = Scope · 2 Stress
+
+**On Hit:** The target is Dazed until the end of their next turn.
+
+**On Miss:** You can spend 1 MP to deal 2 Stress to the target.
+
+### Magic Missile
+
+[[actions/volley:3 Volley]]
+Spell · 2 Memory · Mana X
+Range = Scope
+
+For every MP spent, you deal :adx[1d6] Force to a different character within Range, with damage rolled once for all targets.
+
+### **Power Attack**
+
+Minor Action · Skill · 2 Memory
+
+You receive **+1** on your next melee attack before the start of your next turn, but it deals **+3 bonus damage** on a hit.
+
+### **Resolve**
+
+Skill · 1 Memory · Focus X
+
+**1/turn** when you make a save, you can gain +1 to the result for each point of Focus spent. You can't use this ability if you are unable to take **reactions**.
+
+### **Shield Bash**
+
+Skill · 1 Memory
+
+When you Interpose and end the movement next to the attacker, you can **push** them **1 space** after the attack.
+
+### Shocking Grasp
+
+[[actions/fight:5 Fight]]
+Melee Spell Attack · 1 Memory
+Reach 1 · 2 Stress
+
+### **Two-Weapon Fighting**
+
+Skill · 2 Memory · Unique
+
+**On Hit:** The target can't use **reactions** until the end of their next turn.
+
+### **Support Training, Basic**
+
+Skill · 2 Memory · Unique
+
+You can equip one Main support item in a Light slot.
+
+### **Support Training, Heavy**
+
+Skill · 3 Memory · Unique
+
+You can equip one Heavy support item in a Main slot.
+
+**1/round** immediately after you [[actions/volley:3 Volley]] or [[actions/fight:5 Fight]] with a Light weapon, you can attack with a different Light weapon as a **free action**. The extra attack can't include a weapon used as part of the original action, and doesn't trigger linked attacks.
+
+### **Weapon Training, Basic**
+
+Skill · 3 Memory
+
+You can equip one Main weapon in a Light slot or in a Light Light slot instead of two Light weapons.
+
+### **Weapon Training, Heavy**
+
+Skill · 4 Memory
+
+You can equip one Heavy weapon in a Main slot or in a Main Light slot instead of a Main weapon and a Light weapon.
+
+| KEY SECTIONS                   |        |
+| ------------------------------ | ------ |
+| Appendix A: Shops and Supplies | p. 224 |
+| Appendix B: Loot               | p. 234 |
+| Appendix C: NPC Types          | p. 265 |
+| Appendix D: Glossary           | p. 266 |
