@@ -10,7 +10,7 @@ const Infobox = ({ content }: InfoboxProps) => {
       <div className="flex-none w-10 h-10 rounded-full bg-white text-[#2c2f5e] flex items-center justify-center font-bold">
         !
       </div>
-      <div className="prose font-serif leading-relaxed dark:prose-invert prose-a:text-[#41AFF3]">
+      <div className="mdstyle font-serif leading-relaxed">
         <Markdown content={content || ""}/>
       </div>
     </div>

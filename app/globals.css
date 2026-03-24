@@ -1,6 +1,5 @@
 @import url('https://fonts.cdnfonts.com/css/colonna-mt');
 @import "tailwindcss";  
-@plugin "@tailwindcss/typography";
 @import "tailwindcss";
 @plugin "tailwindcss-opentype";
 
@@ -38,26 +37,53 @@ body {
   font-family: var(--font-colonna-mt);
 }
 
-/* Bad practice, according to Tailwind, but I like using globals: it feels weird defining stuff in weird places.
-I suppose it's all technically just for Markdown, so I could define it there. */
-.prose a[href^="/compendium/"] {
+/* Markdown styling*/
+.mdstyle h1 {
+  @apply text-3xl font-bold mb-4;
+}
+
+.mdstyle h2 {
+  @apply text-2xl font-semibold mb-3;
+}
+
+.mdstyle h3 {
+  @apply text-xl font-semibold mb-2;
+}
+
+.mdstyle p {
+  @apply mb-4;
+}
+
+.mdstyle a[href^="/compendium/"] {
   @apply text-green-500 underline;
 }
 
-.prose a.wiki-actions {
+.mdstyle a.wiki-actions {
   @apply text-red-600;
 }
 
-.prose a.wiki-items {
+.mdstyle a.wiki-items {
   @apply text-gray-600;
 }
 
-.prose a.wiki-conditions {
+.mdstyle a.wiki-conditions {
   @apply text-purple-600;
 }
 
-.prose a.wiki-spells {
+.mdstyle a.wiki-spells {
   @apply text-indigo-600;
+}
+
+.mdstyle table {
+  @apply w-full table-auto border-2 border-gray-300 mb-4; 
+}
+
+.mdstyle th {
+  @apply border-2 border-gray-300 bg-gray-200 px-1 py-1 text-left;
+}
+
+.mdstyle td {
+  @apply border-2 border-gray-300 px-1 py-1;
 }
 
 .adx {

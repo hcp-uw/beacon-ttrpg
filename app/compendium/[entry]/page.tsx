@@ -127,11 +127,12 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
               {content?.title || ""} {/* maybe unneeded */}
             </h1>
 
-            <div className="font-serif leading-relaxed max-w-none">
-              {/* <Markdown content={"[[actions/channel: 3 Channel]]"} />
-              <Markdown content={"[[items/box: Box]]"} />
+            <div className="mdstyle font-serif leading-relaxed max-w-none">
+              <Markdown content={"[[actions/channel: 3 Channel]]"} />
+              <Markdown content={"[[items/object: Object]]"} />
               <Markdown content={"[[conditions/hidden: Hidden]]"} />
-              <Markdown content={"[[spells/improvised_spell_attack: Improvised Spell Attack]]"} /> */}
+              <Markdown content={"[[spells/improvised_spell_attack: Improvised Spell Attack]]"} />
+              <Markdown content={"[[article: Article]]"} />
               <Markdown content={content?.body || ""}/>
             </div>
           </div>

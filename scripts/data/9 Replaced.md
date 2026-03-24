@@ -39,7 +39,7 @@ Whenever you prepare for a quest, you can always choose equipment and techniques
 
 ## BASIC SUPPORT ITEMS
 
-:::box
+:::box{type="it"}
 ::boxTitle[**Aquatic Gear**]
 ::boxSubtitle[Support Item · Light]
 
@@ -166,11 +166,14 @@ Support Item · Light
 
 You gain the Shield Block reaction. If you meet the trigger condition of Shield Block while using Interpose, you can automatically use its effect as part of that Interpose reaction.
 
-**Shield Block** [[actions/reaction:Reaction (1/round)]]
+:::box{type="react"}
+::boxTitle[**Shield Block**]
+::boxSubtitle[[[actions/reaction:Reaction (1/round)]]]
 
 **Trigger:** You would take Physical, Astral, Lunar, or Force.
 
 **Effect:** You take 2 Stress and gain **resistance to that damage**.
+:::
 
 ### **Shield, Tower**
 

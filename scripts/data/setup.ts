@@ -19,7 +19,7 @@ Whenever you prepare for a quest, you can always choose equipment and techniques
 | Maul          | [[actions/fight:5 Fight]] | Heavy Club    | Inaccurate, Push 1 | Reach 1 | :adx[3d6] Physical   |
 | Moonknife     | [[actions/fight:5 Fight]] | Light Blade   | Accurate, Thrown 3 | Reach 1 | :adx[1d3] Lunar      |
 | Photon Axe    | [[actions/fight:5 Fight]] | Heavy Blade   | Reliable 4         | Reach 1 | :adx[1d6+7] Astral   |
-| Rapier        | [[actions/fight:5 Fight]] | Light Blade   | Piercing           | Reach 1 | 2 Physical           |
+| Rapier        | [[actions/fight:5 Fight]] | Light Blade   | Piercing           | Reach 1 | :adx[2] Physical     |
 | Runespear     | [[actions/fight:5 Fight]] | Main Longarm  | Thrown 3           | Reach 2 | :adx[1d6+1] Force    |
 | Sword         | [[actions/fight:5 Fight]] | Main Blade    | Reliable 2         | Reach 1 | :adx[1d6+1] Physical |
 | Whip          | [[actions/fight:5 Fight]] | Light Longarm | –                  | Reach 3 | :adx[1d3] Physical   |
@@ -44,7 +44,7 @@ Whenever you prepare for a quest, you can always choose equipment and techniques
 
 ## BASIC SUPPORT ITEMS
 
-:::box
+:::box{type="it"}
 ::boxTitle[**Aquatic Gear**]
 ::boxSubtitle[Support Item · Light]
 
@@ -171,11 +171,14 @@ Support Item · Light
 
 You gain the Shield Block reaction. If you meet the trigger condition of Shield Block while using Interpose, you can automatically use its effect as part of that Interpose reaction.
 
-**Shield Block** [[actions/reaction:Reaction (1/round)]]
+:::box{type="react"}
+::boxTitle[**Shield Block**]
+::boxSubtitle[[[actions/reaction:Reaction (1/round)]]]
 
 **Trigger:** You would take Physical, Astral, Lunar, or Force.
 
 **Effect:** You take 2 Stress and gain **resistance to that damage**.
+:::
 
 ### **Shield, Tower**
 
