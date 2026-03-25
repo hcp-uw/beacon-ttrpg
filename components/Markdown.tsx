@@ -36,7 +36,7 @@ function boxDirectivePlugin() {
 					node.data.hName = "EntityBox"; // Render as an <EntityBox> element
 					node.data.hProperties = {
 						className: "box", // Styling class
-						type: node.attributes.type // Type
+						type: node.attributes.type // Type, may be superfluous (?)
 					};
 				}
 			}
@@ -45,16 +45,17 @@ function boxDirectivePlugin() {
 					node.data = node.data || {};
 					node.data.hName = "EntityTitle"; // Custom tag name
 					node.data.hProperties = {
-            dataIsHeader: true,
-						className: "boxTitle" // Styling class
+            dataIsHeader: "l",
+						// className: "boxTitle" // Styling class (unused: might replace if we stop using
+            // Tailwind for this project)
 					};
 				}
 				if (node.name === "boxSubtitle") {
 					node.data = node.data || {};
 					node.data.hName = "EntitySubtitle"; // Custom tag name
 					node.data.hProperties = {
-            dataIsHeader: true,
-						className: "boxSubtitle" // Add a class for styling
+            dataIsHeader: "r",
+						// className: "boxSubtitle" // Styling class (unused)
 					};
 				}
 			}

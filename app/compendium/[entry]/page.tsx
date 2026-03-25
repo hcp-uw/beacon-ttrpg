@@ -72,9 +72,9 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
       </Titlebar>
 
       {/* ===== Main Layout ===== */}
-      <section className="max-w-[1400px] mx-auto px-10 pt-8 pb-16 grid grid-cols-[320px_1fr] gap-10 items-start">
+      <section className="max-w-[1400px] mx-auto px-10 pt-8 pb-16 md:grid md:grid-cols-[320px_1fr] md:gap-10 items-start">
         {/* ===== Left Sidebar ===== */}
-        <aside className="bg-[#efeff2] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.18)] border border-[#d7d7dd] overflow-hidden">
+        <aside className="bg-[#efeff2] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.18)] border border-[#d7d7dd] overflow-hidden hidden md:block">
           <div className="py-6 px-6">
             <div className="text-3xl font-serif font-semibold text-[#2c2f5e] -mt-2">
               Navigation
@@ -123,9 +123,9 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
         <div className="flex flex-col gap-8">       
           {/* Main content card */}
           <div className="bg-[#f3f3f5] shadow-xl border border-[#d7d7dd] p-8">
-            <h1 className="text-3xl font-serif text-[#2c2f5e] mb-4">
-              {content?.title || ""} {/* maybe unneeded */}
-            </h1>
+            {/* <h1 className="text-3xl font-serif text-[#2c2f5e] mb-4">
+              {content?.title || ""}
+            </h1> maybe unneeded */}
 
             <div className="mdstyle font-serif leading-relaxed max-w-none">
               <Markdown content={"[[actions/channel: 3 Channel]]"} />
