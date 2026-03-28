@@ -4,17 +4,17 @@ import { use, useMemo, useState, useEffect } from "react";
 import Markdown from "@/components/Markdown";
 import { doc, getDoc } from "firebase/firestore";
 import {db} from '@/firebase-config.mjs';
-import type { CompendiumEntry } from "@/types/compendium-entry";
+import type { CompendiumEntry } from "@/types/CompendiumEntry";
 import Infobox from "@/components/Infobox";
 import Navbar from "@/components/Navbar";
 import Titlebar from "@/components/Titlebar";
 
-export default function CompendiumPage({ params }: { params: Promise<{ entry: string; variant: string }> }) {
-  const { entry} = use(params);
+export default function CompendiumPage({ params }: { params: Promise<{ entry: string }> }) {
+  const { entry } = use(params);
 
   useEffect(() => {
     const load = async () => {
-      // Ensure entry and variant are available
+      // Ensure entry and is available
       if (!entry) return;
 
       const docSnap = await getDoc(doc(db, "compendium_entries", entry));

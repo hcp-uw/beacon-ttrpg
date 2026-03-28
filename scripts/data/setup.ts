@@ -1,7 +1,6 @@
-export const items = [
-    {
-        "id": "basic_equipment_and_techniques",
-        "body": `# 9: BASIC EQUIPMENT AND TECHNIQUES
+export const items = [{
+    "id": "basic_equipment_and_techniques",
+    "body": `# 9: BASIC EQUIPMENT AND TECHNIQUES
 
 Beacons have access to an array of basic equipment and techniques. These abilities are always available to beacons, either because they're easy to find, learn, or craft, or because they're cheap.
 
@@ -455,10 +454,9 @@ You can equip one Heavy weapon in a Main slot or in a Main Light slot instead of
 | Appendix B: Loot               | p. 234 |
 | Appendix C: NPC Types          | p. 265 |
 | Appendix D: Glossary           | p. 266 |
-        `,
-        "infoboxes": ["Test"],
-        "redirect": "",
-        "ruleset": "Core",
-        "title": "Basic Equipment and Techniques"
-    }
-]
+    `,
+    "infoboxes": ["Test"],
+    "redirect": "",
+    "ruleset": "Core",
+    "title": "Basic Equipment and Techniques"
+}]
