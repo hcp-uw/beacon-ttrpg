@@ -123,16 +123,15 @@ export default function CompendiumPage({ params }: { params: Promise<{ entry: st
         <div className="flex flex-col gap-8">       
           {/* Main content card */}
           <div className="bg-[#f3f3f5] shadow-xl border border-[#d7d7dd] p-8">
-            {/* <h1 className="text-3xl font-serif text-[#2c2f5e] mb-4">
-              {content?.title || ""}
-            </h1> maybe unneeded */}
-
             <div className="mdstyle font-serif leading-relaxed max-w-none">
+              {/* Formatting proof of concept stuff, ignore at your leisure. */}
               <Markdown content={"[[actions/channel: 3 Channel]]"} />
               <Markdown content={"[[items/object: Object]]"} />
               <Markdown content={"[[conditions/hidden: Hidden]]"} />
               <Markdown content={"[[spells/improvised_spell_attack: Improvised Spell Attack]]"} />
               <Markdown content={"[[article: Article]]"} />
+              {/* The actual content below. Note how the entire content is wrapped in Markdown */}
+              {/* as I implement a lot of logic in the Markdown component */}
               <Markdown content={content?.body || ""}/>
             </div>
           </div>

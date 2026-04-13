@@ -6,18 +6,24 @@ interface EntityBoxProps {
 	children: string;
 	type: "react" | "act" | "ws" | "it";
 	cornerSize?: number;
+	title?: string;
+	subtitle?: string;
 }
 
 export const EntityTitle = ({ children }: any) => <h3 className="m-0">{children}</h3>;
-
 export const EntitySubtitle = ({ children }: any) => <p className="m-0">{children}</p>;
 
+// TODO: Split this component, maybe- it's a bit too long. Perhaps header and body could be split?
 // :::box directive content will be rendered using the EntityBox component.
 // Types: reaction, action, weapon/spell, item/trait for different boxes.
+// Can be operated either by passing children containing Markdown-formatted header elements,
+// or by directly passing a title and subtitle string.
 export const EntityBox = ({
 	children,
 	type,
 	cornerSize = 20,
+	title,
+	subtitle
 }: EntityBoxProps) => {
 	const [boxRef, { width, height }] = useDimensions();
 	const [boxHeaderRef, { height: hHeight }] = useDimensions(); // only need height
@@ -43,15 +49,22 @@ export const EntityBox = ({
 	);
 	// console.log("Children Type:", childrenArray.map((c: any) => c.type || "") )
 
+	// We distinguish between left and right header elements by iterating thru the overall childrenArray
+	// and then filtering out the ones that have "l" or "r" data-is-header attributes for the header.
+	// This isn't necessarily the best, and I'd appreciate a rework, but it works for now.
+	// Actually, it's extremely clunky and probably one of the worst things I've done in this codebase.
+
 	// left header elements
-	const leftHeaderElements = childrenArray.filter((child: any) => {
-		return child.props?.["data-is-header"] === "l";
-	});
+	const leftHeaderElements = [
+		...(title ? [<EntityTitle key="header-title">{title}</EntityTitle>] : []),
+		...childrenArray.filter((child:any) => child.props?.["data-is-header"] === "l")
+	];
 
 	// right header elements
-	const rightHeaderElements = childrenArray.filter((child: any) => {
-		return child.props?.["data-is-header"] === "r";
-	});
+	const rightHeaderElements = [
+		...(subtitle ? [<EntitySubtitle key="header-sub">{subtitle}</EntitySubtitle>] : []),
+		...childrenArray.filter((child:any) => child.props?.["data-is-header"] === "r")
+	];
 
 	// body elements
 	const bodyElements = childrenArray.filter((child: any) => {
@@ -111,10 +124,13 @@ export const EntityBox = ({
 							className={`size-4 transition-[rotate] duration-300 ease-out ${
                 isCollapsed ? "rotate-90" : "rotate-0"}`}
 						>
+							{/* TODO: put in an actual icon instead of the svg */}
               <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100">
                 <polygon points="5 25 50 75 95 25" className={`fill-white stroke-[#353a7a] stroke-width-10`}/>
               </svg>
             </button>
+						{/* TODO: put another <button> with a plus here for adding a trait in the builder */}
+						{/* needs to be togglable as an option, though */}
 					</div>
 				</div>
 			</div>

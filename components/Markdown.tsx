@@ -7,6 +7,9 @@ import { visit } from "unist-util-visit";
 import type { Pluggable } from "unified";
 import { EntityBox, EntityTitle, EntitySubtitle } from "./EntityBox";
 
+// decorative: this dictionary provides the symbols used for the custom formatting of links to the
+// respective categories.
+// Maybe obsolete if we end up not using this sort of category-sorting, or maybe not.
 const categoryIcons: Record<string, string> = {
 	actions: "◎",
 	items: "◒",
@@ -15,6 +18,8 @@ const categoryIcons: Record<string, string> = {
 };
 
 // ===== Tagged Elements =====
+// Until  components, everything here is part of the remark-directive plugin. Check the docs for that
+// (Github) for an explanation of what it's supposed to be used for.
 
 /** boxDirectivePlugin
  * Behavior: Scans the Markdown for :::box tags. Instances of boxed text in the markdown won't be transformed
@@ -41,6 +46,8 @@ function boxDirectivePlugin() {
 				}
 			}
 			if (node.type === "leafDirective") {
+				// Separately, check if the node is a box title/subtitle. Theoretically, you could have the
+				// title/subtitle elements outside of a box- which is very cursed.
 				if (node.name === "boxTitle") {
 					node.data = node.data || {};
 					node.data.hName = "EntityTitle"; // Custom tag name
@@ -85,8 +92,10 @@ function adxDirectivePlugin() {
 	};
 }
 
+// ===== Components in general =====
 const components: Record<string, React.ComponentType<any>> = {
-	// Wikilink rendering.
+	// Wikilink rendering and parsing. Both traditional Markdown links and wikilinks should
+	// resolve to an <a> HTML element anyways, but this project uses wikilinks (via plugin).
 	a: ({ href, children, ...props }) => {
 		// Flatten children to a string to handle React nodes safely
 		const text = React.Children.toArray(children)
@@ -121,16 +130,16 @@ const components: Record<string, React.ComponentType<any>> = {
 	EntitySubtitle: EntitySubtitle,
 };
 
-// ===== Overall component =====
+// ===== Overall Markdown component =====
 export default function Markdown({ content }: { content: string }) {
 	return (
 		<ReactMarkdown
 			remarkPlugins={
 				[
-					remarkGfm,
-					remarkDirective,
-					adxDirectivePlugin,
-					boxDirectivePlugin,
+					remarkGfm, // i honestly forget this one but it should be on the github
+					remarkDirective, // handles the colon-tagged directives
+					adxDirectivePlugin, // a specific directive for dice
+					boxDirectivePlugin, // the specific directive for the EntityBoxes
 					[
 						remarkWikiLink,
 						{
