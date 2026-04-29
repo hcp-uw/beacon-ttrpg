@@ -92,6 +92,30 @@ function adxDirectivePlugin() {
 	};
 }
 
+/** rangeDirectivePlugin
+ * Behavior: Handling of :range[text] in the markdown, for compressed range notation.
+ * Must be wrapped as prior.
+ * Returns: The modified DOM tree.
+ * Parameters: None.
+ */
+function rangeDirectivePlugin() {
+	return (tree: any) => {
+		visit(tree, (node) => {
+			if (node.type === "textDirective" && node.name === "range") {
+				node.children.unshift({
+          type: "text",
+          value: "🞋 "
+        });
+				node.data = node.data || {};
+				node.data.hName = "span";
+				node.data.hProperties = {
+					className: "range", // Styling class
+				}
+			}
+		})
+	}
+}
+
 // ===== Components in general =====
 const components: Record<string, React.ComponentType<any>> = {
 	// Wikilink rendering and parsing. Both traditional Markdown links and wikilinks should
@@ -140,6 +164,7 @@ export default function Markdown({ content }: { content: string }) {
 					remarkDirective, // handles the colon-tagged directives
 					adxDirectivePlugin, // a specific directive for dice
 					boxDirectivePlugin, // the specific directive for the EntityBoxes
+					rangeDirectivePlugin,
 					[
 						remarkWikiLink,
 						{

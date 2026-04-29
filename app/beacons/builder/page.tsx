@@ -4,67 +4,31 @@
 import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import HelpButton from "@/components/HelpButton";
-
-/**
- * Character type definition
- * This defines the full structure of the builder data.
- * Keeping this strongly typed ensures consistency across UI, storage, and export.
- */
-type Character = {
-  profile: {
-    name: string;
-    title: string;
-    pronouns: string;
-    description: string;
-    appearance: string;
-    photo: string | null; // stored as object URL (not file)
-  };
-  ancestry: {
-    primary: string;
-    secondary: string;
-    reflection: string;
-    traits: string[];
-  };
-  class: {
-    name: string;
-    rank: number;
-  };
-  talents: string[];
-  equipment: {
-    weapons: string[];
-    supportItems: string[];
-    skills: string[];
-    spells: string[];
-  };
-};
+import { Beacon } from "@/types/Beacon"
 
 /**
  * Initial empty state for a new character
  * Used both for first render and resetting after export
  */
-const emptyCharacter: Character = {
-  profile: {
-    name: "",
-    title: "",
-    pronouns: "",
-    description: "",
-    appearance: "",
-    photo: null,
-  },
-  ancestry: {
-    primary: "",
-    secondary: "",
-    reflection: "",
-    traits: [],
-  },
-  class: { name: "", rank: 1 },
-  talents: [],
-  equipment: {
-    weapons: [],
-    supportItems: [],
-    skills: [],
-    spells: [],
-  },
+const emptyCharacter: Beacon = {
+	reflection : "",
+	name: "",
+	pronouns: "",
+	title: "",
+	level: 0,
+	ancestry: "",
+	equippedAncestryTrait: "",
+	classes: {"": 0},
+	jobs: {"": 0},
+	equippedJob: "",
+	talents: [""],
+	loot: [""],
+	supplies: {"": 0},
+	weapons: ["a","b"],
+	supportItems: [""],
+	techniques: [""],
+	description: "",
+	image: "" // stored as object URL (not file)
 };
 
 export default function BuilderPage() {
@@ -72,7 +36,7 @@ export default function BuilderPage() {
    * Main state for the entire character
    * Single source of truth for all builder inputs
    */
-  const [character, setCharacter] = useState<Character>(emptyCharacter);
+  const [character, setCharacter] = useState<Beacon>(emptyCharacter);
 
   /**
    * Load saved data from localStorage on first mount
@@ -91,30 +55,38 @@ export default function BuilderPage() {
     localStorage.setItem("beaconCharacter", JSON.stringify(character));
   }, [character]);
 
-  /**
-   * Update profile fields dynamically
-   * Uses computed property name to update only one field
-   */
-  const updateProfile = (field: keyof Character["profile"], value: any) => {
-    setCharacter((prev) => ({
-      ...prev,
-      profile: { ...prev.profile, [field]: value },
-    }));
-  };
+  // /**
+  //  * Update profile fields dynamically
+  //  * Uses computed property name to update only one field
+  //  */
+  // const updateProfile = (field: keyof Character["profile"], value: any) => {
+  //   setCharacter((prev) => ({
+  //     ...prev,
+  //     profile: { ...prev.profile, [field]: value },
+  //   }));
+  // };
 
-  /**
-   * Update ancestry fields dynamically
-   */
-  const updateAncestry = (field: keyof Character["ancestry"], value: any) => {
+  // /**
+  //  * Update ancestry fields dynamically
+  //  */
+  // const updateAncestry = (field: keyof Character["ancestry"], value: any) => {
+  //   setCharacter((prev) => ({
+  //     ...prev,
+  //     ancestry: { ...prev.ancestry, [field]: value },
+  //   }));
+  // };
+
+  const updateInput = (field: keyof Beacon, value: any) => {
     setCharacter((prev) => ({
       ...prev,
-      ancestry: { ...prev.ancestry, [field]: value },
+      [field]: value,
     }));
   };
 
   /**
    * Export character as downloadable JSON file
    * - Wraps data with version for future compatibility
+   * // TODO: Versions aren't used. Reflection should automatically contain that information.
    * - Uses Blob + object URL to trigger download
    * - Clears localStorage after export (fresh start UX)
    */
@@ -128,7 +100,7 @@ export default function BuilderPage() {
 
     const a = document.createElement("a");
     a.href = url;
-    a.download = `${character.profile.name || "character"}.json`;
+    a.download = `${character.name || "character"}.json`;
     a.click();
 
     // Clean up memory
@@ -190,7 +162,7 @@ export default function BuilderPage() {
                   const file = e.target.files?.[0];
 
                   // Store as object URL for preview (not persistent across reloads)
-                  if (file) updateProfile("photo", URL.createObjectURL(file));
+                  if (file) updateInput("image", URL.createObjectURL(file));
                 }}
               />
             </label>
@@ -201,15 +173,15 @@ export default function BuilderPage() {
             <input
               className="input"
               placeholder="Full Name"
-              value={character.profile.name}
-              onChange={(e) => updateProfile("name", e.target.value)}
+              value={character.name}
+              onChange={(e) => updateInput("name", e.target.value)}
             />
 
             <input
               className="input"
               placeholder="Title"
-              value={character.profile.title}
-              onChange={(e) => updateProfile("title", e.target.value)}
+              value={character.title}
+              onChange={(e) => updateInput("title", e.target.value)}
             />
 
             {/* Two-column layout for compact fields */}
@@ -217,20 +189,20 @@ export default function BuilderPage() {
               <input
                 className="input"
                 placeholder="Description"
-                value={character.profile.description}
+                value={character.description}
                 onChange={(e) =>
-                  updateProfile("description", e.target.value)
+                  updateInput("description", e.target.value)
                 }
               />
 
-              <input
+              {/* <input
                 className="input"
                 placeholder="Appearance"
                 value={character.profile.appearance}
                 onChange={(e) =>
-                  updateProfile("appearance", e.target.value)
+                  updateInput("appearance", e.target.value)
                 }
-              />
+              /> */}
             </div>
           </div>
 
@@ -238,8 +210,8 @@ export default function BuilderPage() {
           <input
             className="input"
             placeholder="Pronouns"
-            value={character.profile.pronouns}
-            onChange={(e) => updateProfile("pronouns", e.target.value)}
+            value={character.pronouns}
+            onChange={(e) => updateInput("pronouns", e.target.value)}
           />
         </div>
 
@@ -251,23 +223,24 @@ export default function BuilderPage() {
             <input
               className="input"
               placeholder="Primary Ancestry"
-              value={character.ancestry.primary}
-              onChange={(e) => updateAncestry("primary", e.target.value)}
+              value={character.ancestry}
+              onChange={(e) => updateInput("ancestry", e.target.value)}
             />
 
-            <input
+            {/* <input
               className="input"
               placeholder="Secondary Ancestry"
               value={character.ancestry.secondary}
-              onChange={(e) => updateAncestry("secondary", e.target.value)}
-            />
+              onChange={(e) => updateInput("secondary", e.target.value)}
+            /> */}
+            {/* Dual ancestries are hard to handle, but we can try to re-implement them soon. */}
 
             {/* Full-width field */}
             <input
               className="input col-span-2"
               placeholder="Reflection"
-              value={character.ancestry.reflection}
-              onChange={(e) => updateAncestry("reflection", e.target.value)}
+              value={character.reflection}
+              onChange={(e) => updateInput("reflection", e.target.value)}
             />
           </div>
         </div>
@@ -275,18 +248,17 @@ export default function BuilderPage() {
         {/* ================= CLASS ================= */}
         <div className="card">
           <h2 className="section">Class</h2>
+          {/* TODO: Adhere to the format of classes list, jobs list, activejob */}
 
           {/* Inline update since structure is shallow */}
+          {/* I'm not quite sure what this is but it shouldn't be. */}
           <input
             className="input"
             placeholder="Class (e.g. Aegis)"
-            value={character.class.name}
-            onChange={(e) =>
-              setCharacter((prev) => ({
-                ...prev,
-                class: { ...prev.class, name: e.target.value },
-              }))
-            }
+            value={character.equippedJob}
+            onChange={(e) => {
+              updateInput("equippedJob", e.target.value);
+            }}
           />
         </div>
 
@@ -327,25 +299,20 @@ export default function BuilderPage() {
           <div className="mb-4">
             <label className="label">Weapons</label>
             <div className="grid grid-cols-2 gap-4">
-              {[0, 1].map((i) => (
+              {character.weapons.map((weapon, index) => (
                 <input
-                  key={i}
+                  key={index}
                   className="input"
-                  placeholder={`Weapon ${i + 1}`}
-                  value={character.equipment.weapons[i] || ""}
+                  value={weapon}
                   onChange={(e) => {
-                    const arr = [...character.equipment.weapons];
-                    arr[i] = e.target.value;
-
-                    setCharacter((prev) => ({
-                      ...prev,
-                      equipment: { ...prev.equipment, weapons: arr },
-                    }));
+                    const newWeapons = [...character.weapons];
+                    newWeapons[index] = e.target.value;
+                    setCharacter(prev => ({ ...prev, weapons: newWeapons }));
                   }}
                 />
               ))}
-            </div>
           </div>
+        </div>
 
           {/* Support Items */}
           <div className="mb-4">
@@ -356,17 +323,14 @@ export default function BuilderPage() {
                   key={i}
                   className="input"
                   placeholder={`Item ${i + 1}`}
-                  value={character.equipment.supportItems[i] || ""}
+                  value={character.supportItems[i]|| ""}
                   onChange={(e) => {
-                    const arr = [...character.equipment.supportItems];
+                    const arr = [...character.supportItems];
                     arr[i] = e.target.value;
 
                     setCharacter((prev) => ({
                       ...prev,
-                      equipment: {
-                        ...prev.equipment,
-                        supportItems: arr,
-                      },
+                      supportItems: arr,
                     }));
                   }}
                 />
@@ -374,23 +338,23 @@ export default function BuilderPage() {
             </div>
           </div>
 
-          {/* Skills */}
+          {/* Skills (now Techniques)*/}
           <div className="mb-4">
-            <label className="label">Skills</label>
+            <label className="label">Techniques</label>
             <div className="grid grid-cols-3 gap-4">
               {[0, 1, 2].map((i) => (
                 <input
                   key={i}
                   className="input"
-                  placeholder={`Skill ${i + 1}`}
-                  value={character.equipment.skills[i] || ""}
+                  placeholder={`Technique ${i + 1}`}
+                  value={character.techniques[i] || ""}
                   onChange={(e) => {
-                    const arr = [...character.equipment.skills];
+                    const arr = [...character.techniques];
                     arr[i] = e.target.value;
 
                     setCharacter((prev) => ({
                       ...prev,
-                      equipment: { ...prev.equipment, skills: arr },
+                      techniques: arr,
                     }));
                   }}
                 />
@@ -398,7 +362,7 @@ export default function BuilderPage() {
             </div>
           </div>
 
-          {/* Spells */}
+          {/* Spells (deprecated, not distinct from Techniques)
           <div>
             <label className="label">Spells</label>
             <div className="grid grid-cols-3 gap-4">
@@ -420,7 +384,7 @@ export default function BuilderPage() {
                 />
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* ================= ACTIONS ================= */}

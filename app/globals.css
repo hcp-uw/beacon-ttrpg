@@ -90,4 +90,8 @@ body {
   .adx {
     @apply small-caps font-bold
   }
+
+  .range {
+    @apply small-caps font-bold
+  }
 }

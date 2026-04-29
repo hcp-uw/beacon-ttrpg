@@ -1,46 +1,52 @@
+# Source Tool for the Beacon TTRPG
+
+A (minimal) compendium and characterbuilding tool for the Beacon TTRPG (https://www.pirategonzalezgames.com). Created with permission. All information in this tool's compendium is available from the Beacon Player Version V1.16.1.
+
+## Team Members
+
+* Frontend: Angela Zhang, Holland Young, Caden Ko, Shreyas S., Valentina A.
+
+* Backend: Caden Ko
+
+## Setup and Installation
+
+This project's base data is loaded from local (static) content.
+
+Open this repository in an IDE: we have used VS Code.
+
+In a terminal, run the following commands from the project folder:
+
+> npm install
+> run npm start
+
+Ctrl + click or paste the given link (usually something like http://localhost:3000) into your browser.
+
 ## Project Structure
 
-##### Home
-app/
-page.tsx            
-
-##### Beacon roster
-beacons/
-page.tsx          
-
-##### Character builder
-builder/
-page.tsx        
-
-##### Compendium
-compendium/
-page.tsx          
-
----
-
-## Features
-
 ### Home
-Main navigation hub linking to Beacons and Compendium.
 
-### Beacons
-Roster-style character grid.
+app/page.tsx
 
----
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+### Beacon Roster
 
+beacons/page.tsx
 
-### Builder
-Multi-step character creation UI.
+#### Beacon Builder
+
+beacons/builder/page.tsx
+
+#### Beacon Viewer
+
+beacons/\[location\]/page.tsx
 
 ### Compendium
-Structured content viewer with sidebar navigation.
 
-## Available Scripts
+compendium/\[entry\]/page.tsx
 
-**Upload**
-Uploads the second argument file as a compendium entry.
+---
 
-```bash
-    npx tsx scripts/upload.ts FILE_TO_UPLOAD.ts
-```
+## Other Information
+
+Club Contact Information: huskycodingproject@gmail.com 
+
+License: Creative Commons License
