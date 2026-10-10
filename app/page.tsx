@@ -1,74 +1,199 @@
 "use client";
-import Link from "next/link";
-import Image from "next/image";
-import Navbar from "@/components/Navbar";
 
-export default function Home() {
+import { useEffect, useRef, useState } from "react";
+import Navbar from "@/components/Navbar";
+import Titlebar from "@/components/Titlebar";
+
+export default function BuilderPage() {
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  // Revoke the object URL when it's replaced or the component unmounts,
+  // so we don't leak memory every time a new photo is picked.
+  useEffect(() => {
+    return () => {
+      if (photoPreview) URL.revokeObjectURL(photoPreview);
+    };
+  }, [photoPreview]);
+
+  function handlePhotoClick() {
+    fileInputRef.current?.click();
+  }
+
+  function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please choose an image file.");
+      e.target.value = "";
+      return;
+    }
+
+    if (photoPreview) URL.revokeObjectURL(photoPreview);
+    setPhotoPreview(URL.createObjectURL(file));
+  }
+
+  function handleRemovePhoto(e: React.MouseEvent) {
+    e.stopPropagation(); // don't trigger the upload click handler underneath
+    if (photoPreview) URL.revokeObjectURL(photoPreview);
+    setPhotoPreview(null);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    // Prevent the browser from reloading the page
+    e.preventDefault();
+
+    // Read the form data
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Work with data as JSON object
+    const formJson = Object.fromEntries(formData.entries());
+    console.log(formJson);
+
+    // formData.get("beaconPhoto") is the File object (or null if none picked)
+  }
+
   return (
-    <main className="min-h-screen bg-white text-white">
-      
+    <main className="min-h-screen bg-[#f3f3f5] text-[#2c2f5e]">
       {/* ===== Top Navigation Bar ===== */}
       <Navbar></Navbar>
-      
-      {/* ===== Welcome Banner ===== */}
-      <section className="mx-8 mt-6">
-        <div className="flex items-center gap-3 bg-gradient-to-r from-[#3b3f7c] via-[#3a3f69] to-[#3a3a3a] px-5 py-3 rounded shadow">
-          <span className="text-lg">👤</span>
-          <span className="text-sm">Welcome message?</span>
-        </div>
-      </section>
 
-      {/* ===== Main Content ===== */}
-      <section className="grid grid-cols-[560px_1fr] gap-16 mt-16 max-w-[1400px] mx-auto px-8 items-start">
-        {/* Left: buttons */}
-        <div className="flex flex-col gap-10 items-start mt-32 ml-28">
-          <Link
-            href="/beacons"
-            className="
-              w-[520px]
-              flex items-center gap-5
-              bg-gradient-to-r from-[#353a7a] via-[#3f4370] to-[#3b3b3b]
-              px-14 py-8
-              rounded-2xl
-              shadow-lg
-              text-4xl font-serif
-              text-left
-              hover:opacity-95 active:scale-[0.99]
-              transition
-            "
-          >
-            <span className="text-4xl">🗺</span>
-            <span>Beacon Roster</span>
-          </Link>
-
-          <Link
-            href="/compendium"
-            className="
-              w-[520px]
-              flex items-center gap-5
-              bg-gradient-to-r from-[#353a7a] via-[#3f4370] to-[#3b3b3b]
-              px-14 py-8
-              rounded-2xl
-              shadow-lg
-              text-4xl font-serif
-              text-left
-              hover:opacity-95 active:scale-[0.99]
-              transition
-            "
-          >
-            <span className="text-4xl">🧭</span>
-            <span>Compendium</span>
-          </Link>
+      {/* ===== Title Bar ===== */}
+      <Titlebar>
+        {/* Step indicator */}
+        <div className="flex items-center gap-4 font-heading tracking-[0.25em] uppercase">
+          <span className="text-2xl">1</span>
+          <span>Profile</span>
         </div>
 
-        {/* Right: image */}
-        <div className="flex justify-end">
-          <img
-            src="/beacon-visual.png"
-            alt="Beacon artwork"
-            className="w-[480px] h-auto rounded-xl shadow-lg"
-          />
+        {/* Steps placeholder */}
+        <div className="ml-auto flex gap-6 opacity-80">
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>5</span>
+          <span className="font-bold">End</span>
         </div>
+      </Titlebar>
+
+      {/* ============================= */}
+      {/* Main Builder Card */}
+      {/* ============================= */}
+      <section className="px-10 pt-6">
+        <form method="post" onSubmit={handleSubmit}>
+        <div className="bg-[#efeff2] rounded-2xl shadow-[0_6px_18px_rgba(0,0,0,0.2)] border border-[#d7d7dd] p-8 grid grid-cols-[220px_1fr_200px] gap-6 items-start">
+
+          {/* ================================= */}
+          {/* Photo Upload */}
+          {/* ================================= */}
+          <div>
+            <div className="text-sm font-serif mb-2 uppercase tracking-wide">
+              Photo Upload
+            </div>
+
+            {/* Hidden native file input — the styled box below triggers it */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              name="beaconPhoto"
+              accept="image/*"
+              onChange={handlePhotoChange}
+              className="hidden"
+            />
+
+            <div
+              onClick={handlePhotoClick}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") handlePhotoClick();
+              }}
+              className="relative w-[180px] h-[180px] border border-[#cfcfd6] rounded-md flex items-center justify-center text-5xl text-gray-400 bg-white overflow-hidden cursor-pointer hover:border-[#2c2f5e] transition"
+            >
+              {photoPreview ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={photoPreview}
+                    alt="Profile photo preview"
+                    className="w-full h-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemovePhoto}
+                    aria-label="Remove photo"
+                    className="absolute top-1 right-1 w-6 h-6 flex items-center justify-center rounded-full bg-black/60 text-white text-sm hover:bg-black/80 transition"
+                  >
+                    ×
+                  </button>
+                </>
+              ) : (
+                "+"
+              )}
+            </div>
+          </div>
+
+          {/* ================================= */}
+          {/* Center Form Fields */}
+          {/* ================================= */}
+          <div className="flex flex-col gap-4">
+            {/* Full Name */}
+            <div>
+              <label className="text-sm font-serif uppercase tracking-wide">
+                * Full Name - or Sobriquet
+              </label>
+              <input name="beaconName" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+            </div>
+
+            {/* Title */}
+            <div>
+              <label className="text-sm font-serif uppercase tracking-wide">
+                Title
+              </label>
+              <input name="beaconTitle" className="w-[70%] border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+            </div>
+
+            {/* Description + Appearance */}
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-serif uppercase tracking-wide">
+                  Description
+                </label>
+                <input name="beaconDescription" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+              </div>
+
+              <div>
+                <label className="text-sm font-serif uppercase tracking-wide">
+                  Appearance
+                </label>
+                <input name="beaconAppearance" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+              </div>
+            </div>
+          </div>
+
+          {/* ================================= */}
+          {/* Right Pronouns Field */}
+          {/* ================================= */}
+          <div>
+            <label className="text-sm font-serif uppercase tracking-wide">
+              Pronouns
+            </label>
+            <input name="beaconPronouns" className="w-full border border-[#cfcfd6] rounded-sm h-10 px-3 bg-white" />
+          </div>
+
+          {/* ================================= */}
+          {/* Submit Button */}
+          {/* ================================= */}
+          <div className="col-span-3 flex justify-end">
+            <button type="submit" className="bg-white text-[#23244a] px-6 py-2 rounded-sm text-sm font-serif uppercase hover:ring-2 hover:ring-[#292F5E] hover:ring-inset transition">
+              Save & Continue
+            </button>
+          </div>
+        </div>
+        </form>
       </section>
     </main>
   );
